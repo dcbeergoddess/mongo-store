@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Prodcut Details</title>
+</head>
+<body>
+    
+</body>
+</html>
+
+<!-- THIS IS THE DETAILS PAGE FOR EACH PRODUCT -->
+<!-- WHEN A PRODUCT IS CLICKED ON THE MAIN PAGE THEY WILL BE REDIRECTED HERE -->
+<!-- IT WILL LIST THE ATTRIBUTES OF THE PRODUCT -->
+<!-- 
+    name (string)
+    description (string)
+    price (number)
+    inventory (number)
+-->
+
+
+<!-- ON THIS PAGE THE CUSTOMER WILL ENTER THEIR -->
+<!-- 
+    name
+    email address
+-->
+
+
+<table style="width:100%">
+    <tr>
+        <th>Product Name</th>
+        <th>Description</th> 
+        <th>Price</th>
+        <th>Inventory</th>
+    </tr>
+    
+    <tr>
+        <td>Soap</td>
+        <td>Cleaning stuff</td>
+        <td>50</td>
+        <td>25</td>
+    </tr>
+    
+</table>
+
+<form action="/submit" method="post">
+    <h2>Enter your information</h2>
+    <input type="text" class="form-control" name="customerName" placeholder="name" autofocus>
+    <input type="text" class="form-control" name="customerEmail" placeholder="email" autofocus>
+    <button class="btn btn-lg btn-primary btn-block" id="submit" type="submit">Submit</button>
+</form>
