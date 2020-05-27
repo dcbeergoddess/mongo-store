@@ -23,7 +23,7 @@ const CustomerSchema = new Schema({
     fullName: String
 });
 
-CustomerSchema.methods.setFullName() = function()
+CustomerSchema.methods.setFullName = function()
 {
     this.fullName = `${this.lname}, ${this.fname}`;
     return this.fullName;
