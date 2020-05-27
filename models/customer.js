@@ -3,11 +3,11 @@ const Schema = mongoose.Schema;
 
 const CustomerSchema = new Schema({
     fname: {
-        type: Schema.Types.String,
+        type: String,
         trim: true
     },
     lname: {
-        type: Schema.Types.String,
+        type: String,
         trim: true,
         required: "Your last name is required."
     },
