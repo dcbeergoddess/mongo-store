@@ -33,10 +33,10 @@ In this activity, you will build a small online store. You'll work in groups of 
 ```sql
 
 db.products.insertMany([
-  { name: "Beard Growth Serum", description: "Grow your best beard during quarantine!", price: 25.99, inventory: 6 }
-  { name: "Hair Dye Kit", description: "Mulit Color Pack of temporty Hair Coloring! Includes Pink, Blue, Green and Purple ", price: 45.99, inventory: 7 }
-  { name: "Chia Pet: Chewbacca", description: "Grow your own Chewbacca Chia Pet at home!", price: 17.99, inventory: 3 }
-  { name: "Home Brew Kit", description: "The essentials to making your own beer at home!", price: 250.00, inventory: 1 }
+  { name: "Beard Growth Serum", description: "Grow your best beard during quarantine!", price: 25.99, inventory: 6 },
+  { name: "Hair Dye Kit", description: "Mulit Color Pack of temporty Hair Coloring! Includes Pink, Blue, Green and Purple ", price: 45.99, inventory: 7 },
+  { name: "Chia Pet: Chewbacca", description: "Grow your own Chewbacca Chia Pet at home!", price: 17.99, inventory: 3 },
+  { name: "Home Brew Kit", description: "The essentials to making your own beer at home!", price: 250.00, inventory: 1 },
   { name: "Stand Up Punching Bag", description: "Get your agression out in a health way at home!", price: 199.00, inventory: 19 }
 ])
 
