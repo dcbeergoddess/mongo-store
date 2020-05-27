@@ -25,7 +25,7 @@ const ProductSchema = new Schema({
 
 //This method takes in an order number, and either returns false (if the order cannot be filled),
 //or true and subtracts the desired number
-Schema.methods.InventoryRequest(num)
+/*Schema.methods.InventoryRequest(num)
 {
     if(this.inventory < num)
     {
@@ -36,7 +36,7 @@ Schema.methods.InventoryRequest(num)
         this.inventory = this.inventory - num;
         return true;
     }
-}
+}*/
 
 const Product = mongoose.model("Product",ProductSchema);
 module.exports = Product;
