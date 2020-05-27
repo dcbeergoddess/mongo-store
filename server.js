@@ -41,11 +41,39 @@ app.post("/user",(req,res) =>{
 });
 
 app.post("/order",(req,res) =>{
-    //Find out how to get the id of the customer object
-    db.Order.create(req.body).then(({})=>{
-        db.Customer.findOneAndUpdate({_id}, {
-            $push: {orders: _id}
-        });
+    /*The query needs:
+    -The id of the current product page as "productId"
+    -The object of the form data for the order as "orderObject"
+    -The object of the form data for the customer as "customerObject"
+    */
+    let productId = req.body.productId;
+    orderObject = req.body.order;
+    customerObject = req.body.customer;
+    db.Product.find({_id: productId}).then(productData => {
+        if(productData.InventoryCheck(orderObject.qty))
+        {
+            db.Order.create(orderObject).then(orderData => {
+                db.Customer.findOneAndUpdate({email: customerObject.email},
+                    {customerObject,$push:{orders:orderData}},{
+                    new: true,
+                    upsert: true
+                }).then(customerData =>
+                    {
+                        db.Order.findOneAndUpdate(orderData,{$push:{Product: productData}}).then(orderData =>
+                            {
+                                res.json(orderData);
+                                //This should probably be changed to a redirect later
+                            }
+                        ).catch(err => res.json(err));
+                    }
+                ).catch(err => res.json(err));
+            }).catch(err => res.json(err));
+        }
+        else
+        {
+            alert("There isn't enough of that product to place your order.");
+            res.end();
+        }
     });
 });
 
