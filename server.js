@@ -18,16 +18,9 @@ app.use(express.static("public"));
 
 mongoose.connect(process.env.MONGODB_URI || "mongodb://localhost/populate", { useNewUrlParser: true });
 
-db.Store.create({ name: "Store" })
-  .then(dbStore => {
-    console.log(dbStore);
-  })
-  .catch(({message}) => {
-    console.log(message);
-  });
 
 app.get("/inventory", (req, res) => {
-  db.Item.find({})
+  db.Product.find({})
     .then(dbStore => {
       res.json(dbStore);
     })
@@ -36,26 +29,23 @@ app.get("/inventory", (req, res) => {
     });
 });
 
-app.get("/populated", (req, res) => {
-  db.Store.find({})
-    .populate("items")
-    .then(dbStore => {
-      res.json(dbStore);
-    })
-    .catch(err => {
-      res.json(err);
-    });
+
+//Adds a new product to the database
+app.post("/product",(req,res) =>{
+    db.Product.create(req.body).catch(err => res.json(err));
 });
 
-// add new item
-app.post("/submit", ({body}, res) => { 
-  db.Item.create(body)
-    .then(({_id}) => db.Store.findOneAndUpdate({}, { $push: { item: _id, price: price, qty: qty, desc: desc } }, { new: true }))
-    .then(dbStore => {
-      res.json(dbStore);
-    })
-    .catch(err => {
-      res.json(err);
+//Adds a new customer to the database
+app.post("/user",(req,res) =>{
+    db.Customer.create(req.body).catch(err => res.json(err));
+});
+
+app.post("/order",(req,res) =>{
+    //Find out how to get the id of the customer object
+    db.Order.create(req.body).then(({})=>{
+        db.Customer.findOneAndUpdate({_id}, {
+            $push: {orders: _id}
+        });
     });
 });
 
