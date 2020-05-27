@@ -7,6 +7,7 @@ const Schema = mongoose.Schema;
 const ProductSchema = new Schema({
     name: {
         type: String,
+        trim: true,
         required: "A product must have a name."
     },
     description: {

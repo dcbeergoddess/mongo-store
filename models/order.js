@@ -7,14 +7,17 @@ const Schema = mongoose.Schema;
 const OrderSchema = new Schema({
     customer: {
         type: Schema.Types.ObjectId,
-        ref: "Customer"
+        ref: "Customer",
+        required: "An order needs a customer."
     },
     product: {
         type: Schema.Types.ObjectId,
-        ref: "Product"
+        ref: "Product",
+        required: "An order needs a product."
     },
     qty: {
-        type: Number
+        type: Number,
+        default: 1
     },
     orderDate: {
         type: Date,
