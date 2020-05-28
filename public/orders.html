@@ -1,5 +1,50 @@
 <!DOCTYPE html>
 <html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <title>Orders</title>
+</head>
+
+<body>
+  <table style="width:100%">
+    <center> <h1> ORDER HISTORY </h1> </center>
+        <tr>
+            <th>Customer</th>
+            <th>Customer Email Address</th>
+            <th>Product Name</th>
+            <th>Quantity</th>
+
+        </tr>
+    </table>
+    <script>
+
+        $.ajax({
+            method: "GET",
+            url: "/api/orders"
+        }).then(results => {
+            console.log(results);
+            results.forEach(order => {
+                let trTag = $("<tr>");
+                let quantityTag = $("<td>")
+                quantityTag.text = order.qty
+                trTag.append(quantityTag)
+                $("#ordersList").append(trTag);
+            })
+        });
+
+    </script>
+
+</body>
+
+</html>
+
+
+<!--  
+<!DOCTYPE html>
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -8,7 +53,7 @@
 <body>
     
     <table style="width:100%">
-        <!-- TABLE HEADINGS -->
+            TABLE HEADINGS 
         <tr>
             <th>Customer</th>
             <th>Product</th> 
