@@ -5,14 +5,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Product Details</title>
       <!--CSS -->
-  <link rel="stylesheet" href="../public/assets/css/style.css">
+  <!-- <link rel="stylesheet" href="../public/assets/css/style.css"> -->
 
   <!-- BOOTSTRAP LINKS-->
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
- 
-  <!-- GOOGLE FONT LINKS -->
-  <link href="https://fonts.googleapis.com/css2?family=Monoton&display=swap" rel="stylesheet">
-  <link href="https://fonts.googleapis.com/css2?family=Monoton&family=Montserrat:ital,wght@1,300&display=swap" rel="stylesheet">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 </head>
 <body>
     
@@ -68,10 +65,41 @@
   </div>
 </div>
 
+<div id="viewport">
+  <div class="container">
+    <div class="row">
+      <div class="col-12">
+        <form id="newUser" method="post" autocomplete="on" enctype="multipart/form-data">
+          <div class="form-group">
+          <h3>Place your order:</h3>
 
+          <div class="container">
+            <label for="quantity"><h6>Quantity: </h6></label>
+              <input name="quantity" required="required" type="text" id="quantity">
+            <br>
+            <label for="email"><h6> Email: </h6></label>
+              <input name="email" required="required" type="text" id="email">
+          </div>
+          <div class="container">
+            <label for="fname"><h6>First name:</h6></label>
+              <input name="fname" required="required" type="text" id="fname">
+            <br>
+            <label for="lname"><h6>Last name:    </h6></label>
+              <input name="lname" required="required" type="text" id="lname">
+          </div>
+          <br>
+          <input type="submit" value="Submit">
+        </form>
+        <br>
+      </div>
+    </div>
+  </div>
+</div>
 
 <script>
-  //console.log(window.location.href);
+
+
+  console.log(window.location.href);
   const splitUrl = window.location.href.split("/");
   const productId = splitUrl[4];
   $("#productId").val(productId);
@@ -91,49 +119,6 @@
       inventory.text(results[0].inventory);
       $("#productInfo").append(name).append(description).append(price).append(inventory);
   });
-
-</script>
-
-
-
-
-
-<div id="viewport">
-  <div class="container">
-    <div class="row">
-      <div class="col-12">
-        <form id="newUser" method="post" autocomplete="on" enctype="multipart/form-data">
-          <div class="form-group">
-          <h3>Place your order:</h3>
-
-          <div class="container">
-            <label for="quantity"><h6>Quantity:. .</h6></label>
-              <input name="quantity" required="required" type="text" id="quantity">
-            <br>
-            <label for="fname"><h6>Email:    ........</h6></label>
-              <input name="password_confirm" required="required" type="password" id="password_confirm">
-          </div>
-          <div class="container">
-            <label for="quantity"><h6>First name:</h6></label>
-              <input name="quantity" required="required" type="text" id="quantity">
-            <br>
-            <label for="fname"><h6>Last name:    </h6></label>
-              <input name="password_confirm" required="required" type="password" id="password_confirm">
-          </div>
-          <br>
-          <input type="submit" value="Submit">
-        </form>
-        <br>
-      </div>
-    </div>
-  </div>
-</div>
-
-<script>
-  //console.log(window.location.href);
-  const splitUrl = window.location.href.split("/");
-  const productId = splitUrl[4];
-  $("#productId").val(productId);
 
   $.ajax({
       method: "GET",
