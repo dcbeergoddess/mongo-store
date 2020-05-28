@@ -25,7 +25,7 @@ const ProductSchema = new Schema({
 
 //This method takes in an order number, and either returns false (if the order cannot be filled),
 //or true and subtracts the desired number
-ProductSchema.methods.InventoryRequest(num)
+ProductSchema.methods.InventoryRequest = function(num)
 {
     if(this.inventory < num)
     {
