@@ -3,16 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Product Details</title>
-      <!--CSS -->
-  <link rel="stylesheet" href="../public/assets/css/style.css">
-
-  <!-- BOOTSTRAP LINKS-->
-  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
- 
-  <!-- GOOGLE FONT LINKS -->
-  <link href="https://fonts.googleapis.com/css2?family=Monoton&display=swap" rel="stylesheet">
-  <link href="https://fonts.googleapis.com/css2?family=Monoton&family=Montserrat:ital,wght@1,300&display=swap" rel="stylesheet">
+    <title>Prodcut Details</title>
 </head>
 <body>
     
@@ -34,128 +25,10 @@
 <!-- 
     name
     email address
-    quantity to buy
 -->
-<div id="viewport">
-  <div class="container">
-    <!-- <div class="row"> -->
-      <div class="col-12">
-          <div class="form-group">
-            <div id="productphoto">
-              <img id="logo-img" src="https://news.justcollecting.com/wp-content/uploads/2018/05/WKQCSISPMC.jpg" style="width:250px;height:300px;">
-            </div>
-          <h2>{ PRODUCT NAME CODE }</h2>
-          <div class="container">
-            <label for="quantity"><h6>On sale, only: { PRICE CODE HERE } !</h6></label>
-            
-            <br>
-          </div>
-          <div class="container">
-            <!-- <label for="quantity"><h7>Description:. { DESCRIPTION CODE HERE }.</h7></label> -->
-              <!-- <input name="quantity" required="required" type="text" id="quantity"> -->
-            <br>
-            <label for="fname"><h7>Description:. { DESCRIPTION CODE HERE }</h7></label>
-
-            </div>
-          <div>
-            <label for="fname"><h7>     ....Hurry, only {QTY. CODE HERE } left in stock!!</h7></label>
-
-          </div>
-          <br>
-        <br>
-      </div>
-    <!-- </div> -->
-  </div>
-</div>
 
 
-
-<script>
-  //console.log(window.location.href);
-  const splitUrl = window.location.href.split("/");
-  const productId = splitUrl[4];
-  $("#productId").val(productId);
-
-  $.ajax({
-      method: "GET",
-      url: "/api/getProduct/" + productId
-  }).then(results => {
-      console.log(results);
-      let name = $("<p>");
-      name.text(results[0].name);
-      let description = $("<p>");
-      description.text(results[0].description);
-      let price = $("<p>");
-      price.text(results[0].price);
-      let inventory = $("<p>");
-      inventory.text(results[0].inventory);
-      $("#productInfo").append(name).append(description).append(price).append(inventory);
-  });
-
-</script>
-
-
-
-
-
-<div id="viewport">
-  <div class="container">
-    <div class="row">
-      <div class="col-12">
-        <form id="newUser" method="post" autocomplete="on" enctype="multipart/form-data">
-          <div class="form-group">
-          <h3>Place your order:</h3>
-
-          <div class="container">
-            <label for="quantity"><h6>Quantity:. .</h6></label>
-              <input name="quantity" required="required" type="text" id="quantity">
-            <br>
-            <label for="fname"><h6>Email:    ........</h6></label>
-              <input name="password_confirm" required="required" type="password" id="password_confirm">
-          </div>
-          <div class="container">
-            <label for="quantity"><h6>First name:</h6></label>
-              <input name="quantity" required="required" type="text" id="quantity">
-            <br>
-            <label for="fname"><h6>Last name:    </h6></label>
-              <input name="password_confirm" required="required" type="password" id="password_confirm">
-          </div>
-          <br>
-          <input type="submit" value="Submit">
-        </form>
-        <br>
-      </div>
-    </div>
-  </div>
-</div>
-
-<script>
-  //console.log(window.location.href);
-  const splitUrl = window.location.href.split("/");
-  const productId = splitUrl[4];
-  $("#productId").val(productId);
-
-  $.ajax({
-      method: "GET",
-      url: "/api/getProduct/" + productId
-  }).then(results => {
-      console.log(results);
-      let name = $("<p>");
-      name.text(results[0].name);
-      let description = $("<p>");
-      description.text(results[0].description);
-      let price = $("<p>");
-      price.text(results[0].price);
-      let inventory = $("<p>");
-      inventory.text(results[0].inventory);
-      $("#productInfo").append(name).append(description).append(price).append(inventory);
-  });
-
-</script>
-
-
-
-<!-- <table style="width:100%">
+<table style="width:100%">
     <tr>
         <th>Product Name</th>
         <th>Description</th> 
@@ -170,20 +43,12 @@
         <td>25</td>
     </tr>
     
-</table> -->
+</table>
 
-
-<!-- <form id="buyme" form action="/submit" method="post" enctype="multipart/form-data">
+<form action="/submit" method="post">
     <h2>Enter your information</h2>
-    <h3>Create Your Account:</h3>
-    <p><span class="required">*</span> = required field</p>
-    <div class="form-group">
-      <label for="email"><h6>Email address:</h6></label><span class="required">*</span>
-        <input type="email" class="form-control" id="email" name="email" placeholder="name@example.com" autocomplete="on" required>
-
-    <input type="text" class="form-control" name="quantity" placeholder="1" autofocus>
     <input type="text" class="form-control" name="fName" placeholder="First Name" autofocus>
     <input type="text" class="form-control" name="lName" placeholder="Last Name" autofocus>
-    <input type="email" class="form-control" name="customerEmail" placeholder="email" autofocus>
+    <input type="text" class="form-control" name="customerEmail" placeholder="email" autofocus>
     <button class="btn btn-lg btn-primary btn-block" id="submit" type="submit">Submit</button>
-</form> -->
+</form>
