@@ -7,13 +7,11 @@ const Schema = mongoose.Schema;
 const OrderSchema = new Schema({
     customer: {
         type: Schema.Types.ObjectId,
-        ref: "Customer",
-        required: "An order needs a customer."
+        ref: "Customer"
     },
     product: {
         type: Schema.Types.ObjectId,
-        ref: "Product",
-        required: "An order needs a product."
+        ref: "Product"
     },
     qty: {
         type: Number,
