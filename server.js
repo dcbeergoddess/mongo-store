@@ -49,19 +49,27 @@ app.post("/order",(req,res) =>{
     let productId = req.body.productId;
     orderObject = req.body.order;
     customerObject = req.body.customer;
+    //These variables spilt the incoming data into the nessesary objects
     db.Product.find({_id: productId}).then(productData => {
+        //We find the product being ordered by using the provided id
         if(productData.InventoryCheck(orderObject.qty))
         {
+            //Inventory Check returns true and carries out the operation on product, if the order is possible
             db.Order.create(orderObject).then(orderData => {
+                //This creates the order db object
+                customerObject.orders.push(orderData._id);
+                //customer object should have an orders array when sent here. TODO: make sure this doesn't override an existing array
                 db.Customer.findOneAndUpdate({email: customerObject.email},
-                    {customerObject,$push:{orders:orderData}},{
+                    customerObject,{
                     new: true,
                     upsert: true
+                    //This either updates or creates a customer object
                 }).then(customerData =>
                     {
-                        db.Order.findOneAndUpdate(orderData,{$push:{Product: productData}}).then(orderData =>
+                        db.Order.findOneAndUpdate(orderData,{$push:{customer: customerData}}).then(orderData1 =>
                             {
-                                res.json(orderData);
+                                //This updates the order with the found or created customer
+                                res.json(orderData1);
                                 //This should probably be changed to a redirect later
                             }
                         ).catch(err => res.json(err));
