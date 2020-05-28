@@ -19,15 +19,16 @@ app.use(express.static("public"));
 mongoose.connect(process.env.MONGODB_URI || "mongodb://localhost/mongostore", { useNewUrlParser: true });
 
 
-app.get("/inventory", (req, res) => {
+app.get("/", (req, res) => {
   db.Product.find({})
     .then(dbStore => {
       res.json(dbStore);
     })
     .catch(err => {
-      res.json(err);
+      res.render('index', {products: dbStore});
     });
 });
+
 
 
 //Adds a new product to the database
